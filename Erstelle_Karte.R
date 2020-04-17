@@ -53,13 +53,17 @@ for(i in 1:dim(webtech_berlin)[1]){
   webtech_berlin[i, "Class"] <- geo.data$class[1]
 }
 
-# Get a Map of Berlin as a Background
-register_google (key=secret.g)
-map.berlin <- get_map(location = "Berlin, Germany", source = "google", color = "bw")
+write.csv(webtech_berlin, "data/webtech_located.csv", row.names = TRUE)
 
-wt_map <- ggmap(map.berlin)
-wt_map <- wt_map + geom_point(data=webtech_berlin, aes(x=Lon, y=Lat), color="blue", alpha=1, size=1)
-wt_map <- wt_map + geom_text(data=webtech_berlin, aes(x=Lon, y=Lat, label=Firma), hjust=0, vjust=0, fontface="plain", color="blue", size=2)
-g <- wt_map + myMapTheme
-g
-ggsave("WebtechKarteBerlin.png" )
+
+
+# Get a Map of Berlin as a Background (old method, now replaced with leaflet in Rmarkdown File)
+# register_google (key=secret.g)
+# map.berlin <- get_map(location = "Berlin, Germany", source = "google", color = "bw")
+
+# wt_map <- ggmap(map.berlin)
+# wt_map <- wt_map + geom_point(data=webtech_berlin, aes(x=Lon, y=Lat), color="blue", alpha=1, size=1)
+# wt_map <- wt_map + geom_text(data=webtech_berlin, aes(x=Lon, y=Lat, label=Firma), hjust=0, vjust=0, fontface="plain", color="blue", size=2)
+# g <- wt_map + myMapTheme
+# g
+# ggsave("WebtechKarteBerlin.png" )
